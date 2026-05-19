@@ -1,0 +1,53 @@
+import { QuestionConfig } from "@/types";
+
+export const QUESTIONS: QuestionConfig[] = [
+  {
+    id: 1,
+    text: "Quais especialidades têm os maiores lucros e dividendos médios em 2025?",
+    chartType: "specialty_income",
+    dataSliceKey: "specialty_income",
+    description: "Top 10 especialidades por média de L&D em 2025 (mín. 3 médicos)",
+  },
+  {
+    id: 2,
+    text: "Como evoluíram os rendimentos dos médicos de 2023 a 2025?",
+    chartType: "income_evolution",
+    dataSliceKey: "income_evolution",
+    description: "Evolução do total de Lucros/Dividendos e Pro-labore por ano",
+  },
+  {
+    id: 3,
+    text: "Qual a distribuição etária dos médicos nesta base?",
+    chartType: "age_distribution",
+    dataSliceKey: "age_distribution",
+    description: "Distribuição por faixa etária: 20-29, 30-39, 40-49, 50-59, 60+",
+  },
+  {
+    id: 4,
+    text: "Quais médicos têm os maiores lucros e dividendos em 2025?",
+    chartType: "top_earners",
+    dataSliceKey: "top_earners",
+    description: "Top 10 médicos por L&D em 2025",
+  },
+  {
+    id: 5,
+    text: "Qual a proporção entre Lucros/Dividendos e Rendimentos de Pro-labore?",
+    chartType: "dividends_vs_salary",
+    dataSliceKey: "dividends_vs_salary",
+    description: "Participação percentual de L&D vs pro-labore no rendimento total 2025",
+  },
+  {
+    id: 6,
+    text: "Qual especialidade tem maior contribuição previdenciária média?",
+    chartType: "contribution_by_specialty",
+    dataSliceKey: "contribution_by_specialty",
+    description: "Média de CONTRIB. PREVID. OFICIAL por especialidade em 2025",
+  },
+  {
+    id: 7,
+    text: "Como os médicos se distribuem por faixa de rendimento em 2025?",
+    chartType: "income_brackets",
+    dataSliceKey: "income_brackets",
+    description: "Contagem de médicos por faixa de L&D em 2025",
+  },
+];

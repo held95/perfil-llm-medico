@@ -1,0 +1,282 @@
+{
+  "summary": {
+    "total_doctors": 1498,
+    "total_specialties": 29,
+    "avg_age": 33.1,
+    "age_min": 22,
+    "age_max": 80,
+    "doctors_with_income_2025": 1111,
+    "total_lucros_2025": 72644982.51,
+    "avg_lucros_2025": 65387.02,
+    "total_rend_2025": 4651586.0,
+    "avg_rend_2025": 11957.8
+  },
+  "specialty_income": [
+    {
+      "specialty": "URO",
+      "avg_lucros": 118075.34,
+      "count": 35,
+      "total": 4132636.95
+    },
+    {
+      "specialty": "VASCULAR",
+      "avg_lucros": 94211.2,
+      "count": 59,
+      "total": 5558460.88
+    },
+    {
+      "specialty": "TORAX",
+      "avg_lucros": 90855.76,
+      "count": 4,
+      "total": 363423.03
+    },
+    {
+      "specialty": "CIPE",
+      "avg_lucros": 87319.1,
+      "count": 22,
+      "total": 1921020.19
+    },
+    {
+      "specialty": "CCP",
+      "avg_lucros": 69110.35,
+      "count": 4,
+      "total": 276441.39
+    },
+    {
+      "specialty": "CIRURGIA GERAL",
+      "avg_lucros": 65444.43,
+      "count": 773,
+      "total": 50588542.42
+    },
+    {
+      "specialty": "CLINICA MEDICA",
+      "avg_lucros": 63040.58,
+      "count": 28,
+      "total": 1765136.18
+    },
+    {
+      "specialty": "GASTRO",
+      "avg_lucros": 54340.66,
+      "count": 5,
+      "total": 271703.3
+    },
+    {
+      "specialty": "ORTOPEDIA",
+      "avg_lucros": 47878.15,
+      "count": 79,
+      "total": 3782374.06
+    },
+    {
+      "specialty": "NEURO",
+      "avg_lucros": 42809.9,
+      "count": 40,
+      "total": 1712396.01
+    }
+  ],
+  "income_evolution": {
+    "2023": {
+      "total_lucros": 30021553.18,
+      "total_rend": 2221284.0,
+      "count": 471
+    },
+    "2024": {
+      "total_lucros": 54742886.46,
+      "total_rend": 2916652.0,
+      "count": 935
+    },
+    "2025": {
+      "total_lucros": 72644982.51,
+      "total_rend": 4651586.0,
+      "count": 1111
+    }
+  },
+  "age_distribution": [
+    {
+      "age_range": "20-29",
+      "count": 513,
+      "pct": 34.2
+    },
+    {
+      "age_range": "30-39",
+      "count": 802,
+      "pct": 53.5
+    },
+    {
+      "age_range": "40-49",
+      "count": 124,
+      "pct": 8.3
+    },
+    {
+      "age_range": "50-59",
+      "count": 38,
+      "pct": 2.5
+    },
+    {
+      "age_range": "60+",
+      "count": 21,
+      "pct": 1.4
+    }
+  ],
+  "top_earners": [
+    {
+      "nome": "THIAGO IANNER SILVA",
+      "especialidade": "CIRURGIA GERAL",
+      "lucros_2025": 1283906.33,
+      "rend_2025": 18110.0
+    },
+    {
+      "nome": "WILLIAM GUIDINI LIMA",
+      "especialidade": "CIRURGIA GERAL",
+      "lucros_2025": 1113922.08,
+      "rend_2025": 18110.0
+    },
+    {
+      "nome": "BRENO VICTOR BRANDÇO",
+      "especialidade": "CIRURGIA GERAL",
+      "lucros_2025": 998288.37,
+      "rend_2025": 12144.0
+    },
+    {
+      "nome": "DOUGLAS STERZZA DIAS",
+      "especialidade": "VASCULAR",
+      "lucros_2025": 970364.24,
+      "rend_2025": 18110.0
+    },
+    {
+      "nome": "FELIPE MAIA VIEIRA",
+      "especialidade": "CIRURGIA GERAL",
+      "lucros_2025": 961329.87,
+      "rend_2025": 18110.0
+    },
+    {
+      "nome": "JAIR PEDRALLI JUNIOR",
+      "especialidade": "CIRURGIA GERAL",
+      "lucros_2025": 874536.1,
+      "rend_2025": 18110.0
+    },
+    {
+      "nome": "ELISA MARIA DE",
+      "especialidade": "URO",
+      "lucros_2025": 807246.55,
+      "rend_2025": 18110.0
+    },
+    {
+      "nome": "DANIEL MORAES DOMINGOS",
+      "especialidade": "CIRURGIA GERAL",
+      "lucros_2025": 789994.16,
+      "rend_2025": 18110.0
+    },
+    {
+      "nome": "LEONARDO WELTER NETO",
+      "especialidade": "CIRURGIA GERAL",
+      "lucros_2025": 696533.89,
+      "rend_2025": 16592.0
+    },
+    {
+      "nome": "JOS DONIZETI DE",
+      "especialidade": "VASCULAR",
+      "lucros_2025": 693718.47,
+      "rend_2025": 16592.0
+    }
+  ],
+  "dividends_vs_salary": {
+    "total_lucros_2025": 72644982.51,
+    "total_rend_2025": 4651586.0,
+    "lucros_pct": 94.0,
+    "rend_pct": 6.0
+  },
+  "contribution_by_specialty": [
+    {
+      "specialty": "CCP",
+      "avg_contrib": 1619.31,
+      "total_contrib": 6477.24,
+      "count": 4
+    },
+    {
+      "specialty": "VASCULAR",
+      "avg_contrib": 1443.4,
+      "total_contrib": 28867.96,
+      "count": 20
+    },
+    {
+      "specialty": "ORTOPEDIA",
+      "avg_contrib": 1334.59,
+      "total_contrib": 33364.76,
+      "count": 25
+    },
+    {
+      "specialty": "URO",
+      "avg_contrib": 1326.92,
+      "total_contrib": 22557.7,
+      "count": 17
+    },
+    {
+      "specialty": "CIRURGIA GERAL",
+      "avg_contrib": 1311.68,
+      "total_contrib": 350217.34,
+      "count": 267
+    },
+    {
+      "specialty": "CIPE",
+      "avg_contrib": 1311.12,
+      "total_contrib": 14422.32,
+      "count": 11
+    },
+    {
+      "specialty": "NEURO",
+      "avg_contrib": 1209.07,
+      "total_contrib": 16927.02,
+      "count": 14
+    },
+    {
+      "specialty": "OTORRINO",
+      "avg_contrib": 1159.53,
+      "total_contrib": 5797.66,
+      "count": 5
+    },
+    {
+      "specialty": "ONCOLOGIA",
+      "avg_contrib": 954.3,
+      "total_contrib": 3817.22,
+      "count": 4
+    },
+    {
+      "specialty": "ENDOCRINO",
+      "avg_contrib": 934.56,
+      "total_contrib": 2803.68,
+      "count": 3
+    }
+  ],
+  "income_brackets": [
+    {
+      "bracket": "< R$20k",
+      "count": 524,
+      "pct": 47.2
+    },
+    {
+      "bracket": "R$20k-50k",
+      "count": 210,
+      "pct": 18.9
+    },
+    {
+      "bracket": "R$50k-100k",
+      "count": 176,
+      "pct": 15.8
+    },
+    {
+      "bracket": "R$100k-200k",
+      "count": 117,
+      "pct": 10.5
+    },
+    {
+      "bracket": "R$200k-500k",
+      "count": 68,
+      "pct": 6.1
+    },
+    {
+      "bracket": "> R$500k",
+      "count": 16,
+      "pct": 1.4
+    }
+  ]
+}
