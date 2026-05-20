@@ -63,6 +63,36 @@ export interface IncomeBracket {
   pct: number;
 }
 
+export interface DoctorRetentionYear {
+  year: string;
+  trabalharam: number;
+  sairam: number;
+  novos: number;
+}
+
+export interface DoctorRetentionData {
+  years: DoctorRetentionYear[];
+  returned_2025: number;
+}
+
+export interface DoctorListItem {
+  crm: string;
+  nome: string;
+  specialty: string;
+}
+
+export interface DoctorRecord {
+  crm: string;
+  nome: string;
+  specialty: string;
+  lucros_2023: number | null;
+  rend_2023: number | null;
+  lucros_2024: number | null;
+  rend_2024: number | null;
+  lucros_2025: number | null;
+  rend_2025: number | null;
+}
+
 export interface Analytics {
   summary: Summary;
   specialty_income: SpecialtyIncome[];
@@ -72,6 +102,11 @@ export interface Analytics {
   dividends_vs_salary: DividendsVsSalary;
   contribution_by_specialty: ContributionBySpecialty[];
   income_brackets: IncomeBracket[];
+  // Novas
+  doctor_retention: DoctorRetentionData;
+  income_evolution_by_specialty: Record<string, IncomeEvolution>;
+  doctors_list: DoctorListItem[];
+  doctors_data: DoctorRecord[];
 }
 
 export type ChartType =
@@ -81,7 +116,8 @@ export type ChartType =
   | "top_earners"
   | "dividends_vs_salary"
   | "contribution_by_specialty"
-  | "income_brackets";
+  | "income_brackets"
+  | "doctor_retention";
 
 export interface QuestionConfig {
   id: number;
