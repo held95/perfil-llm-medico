@@ -1,7 +1,7 @@
 "use client";
 import { QUESTIONS } from "@/lib/questions";
 
-const ICONS = ["🏥", "📈", "👥", "💰", "⚖️", "🏛️", "📊"];
+const ICONS = ["🏥", "📈", "👥", "💰", "⚖️", "🏛️", "📊", "🔄"];
 
 interface Props {
   onSelect: (questionId: number) => void;
