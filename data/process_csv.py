@@ -246,6 +246,58 @@ def build_analytics(records):
         for b in INCOME_BRACKET_ORDER
     ]
 
+    # 8. Doctor retention across years
+    worked_2023 = {r['crm'] for r in records if r['lucros_2023'] or r['rend_2023']}
+    worked_2024 = {r['crm'] for r in records if r['lucros_2024'] or r['rend_2024']}
+    worked_2025 = {r['crm'] for r in records if r['lucros_2025'] or r['rend_2025']}
+    left_after_2023 = worked_2023 - worked_2024
+    left_after_2024 = worked_2024 - worked_2025
+    returned_2025 = (worked_2023 - worked_2024) & worked_2025
+    new_in_2024 = worked_2024 - worked_2023
+    new_in_2025 = worked_2025 - worked_2024
+    doctor_retention = {
+        "years": [
+            {"year": "2023", "trabalharam": len(worked_2023), "sairam": len(left_after_2023), "novos": 0},
+            {"year": "2024", "trabalharam": len(worked_2024), "sairam": len(left_after_2024), "novos": len(new_in_2024)},
+            {"year": "2025", "trabalharam": len(worked_2025), "sairam": 0, "novos": len(new_in_2025)},
+        ],
+        "returned_2025": len(returned_2025),
+    }
+
+    # 9. Income evolution by specialty (todas as especialidades)
+    income_evolution_by_specialty = {}
+    for spec in set(r["specialty"] for r in records):
+        spec_records = [r for r in records if r["specialty"] == spec]
+        l23s = [r["lucros_2023"] for r in spec_records if r["lucros_2023"]]
+        l24s = [r["lucros_2024"] for r in spec_records if r["lucros_2024"]]
+        l25s = [r["lucros_2025"] for r in spec_records if r["lucros_2025"]]
+        def spec_rend(year_key, recs):
+            return round(sum(r[f"rend_{year_key}"] or 0 for r in recs if r[f"lucros_{year_key}"]), 2)
+        income_evolution_by_specialty[spec] = {
+            "2023": {"total_lucros": round(sum(l23s), 2), "total_rend": spec_rend("2023", spec_records), "count": len(l23s)},
+            "2024": {"total_lucros": round(sum(l24s), 2), "total_rend": spec_rend("2024", spec_records), "count": len(l24s)},
+            "2025": {"total_lucros": round(sum(l25s), 2), "total_rend": spec_rend("2025", spec_records), "count": len(l25s)},
+        }
+
+    # 10. Doctors list (para autocomplete no frontend — sem dados financeiros)
+    doctors_list = sorted(
+        [{"crm": r["crm"], "nome": " ".join(r["nome"].split()[:3]), "specialty": r["specialty"]} for r in records],
+        key=lambda x: x["nome"],
+    )
+
+    # 11. Doctors data (para filtro server-side — sem CPF/DOB)
+    doctors_data = [
+        {
+            "crm": r["crm"],
+            "nome": " ".join(r["nome"].split()[:3]),
+            "specialty": r["specialty"],
+            "lucros_2023": r["lucros_2023"], "rend_2023": r["rend_2023"],
+            "lucros_2024": r["lucros_2024"], "rend_2024": r["rend_2024"],
+            "lucros_2025": r["lucros_2025"], "rend_2025": r["rend_2025"],
+        }
+        for r in records
+    ]
+
     return {
         "summary": summary,
         "specialty_income": specialty_income,
@@ -255,6 +307,10 @@ def build_analytics(records):
         "dividends_vs_salary": dividends_vs_salary,
         "contribution_by_specialty": contribution_by_specialty,
         "income_brackets": income_brackets,
+        "doctor_retention": doctor_retention,
+        "income_evolution_by_specialty": income_evolution_by_specialty,
+        "doctors_list": doctors_list,
+        "doctors_data": doctors_data,
     }
 
 
