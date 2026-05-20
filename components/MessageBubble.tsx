@@ -9,6 +9,7 @@ import {
   DividendsVsSalary,
   ContributionBySpecialty,
   IncomeBracket,
+  DoctorRetentionData,
 } from "@/types";
 import dynamic from "next/dynamic";
 
@@ -39,6 +40,10 @@ const IncomeBracketsChart = dynamic(
   () => import("./charts/IncomeBracketsChart"),
   { ssr: false }
 );
+const DoctorRetentionChart = dynamic(
+  () => import("./charts/DoctorRetentionChart"),
+  { ssr: false }
+);
 
 function renderChart(chartType: ChartType, chartData: unknown) {
   switch (chartType) {
@@ -58,6 +63,8 @@ function renderChart(chartType: ChartType, chartData: unknown) {
       );
     case "income_brackets":
       return <IncomeBracketsChart data={chartData as IncomeBracket[]} />;
+    case "doctor_retention":
+      return <DoctorRetentionChart data={chartData as DoctorRetentionData} />;
     default:
       return null;
   }
