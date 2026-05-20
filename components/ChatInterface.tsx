@@ -3,25 +3,39 @@ import { useState, useRef, useEffect } from "react";
 import { Message } from "@/types";
 import MessageBubble from "./MessageBubble";
 import SuggestedQuestions from "./SuggestedQuestions";
+import FilterPanel from "./FilterPanel";
 import { QUESTIONS } from "@/lib/questions";
+
+type ActiveFilters = { specialty_filter?: string; doctor_crm?: string };
 
 export default function ChatInterface() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
+  const [selectedQuestionId, setSelectedQuestionId] = useState<number | null>(null);
+  const [activeFilters, setActiveFilters] = useState<ActiveFilters>({});
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  async function handleQuestion(questionId: number) {
+  async function handleQuestion(questionId: number, filters?: ActiveFilters) {
     if (isLoading) return;
 
     const question = QUESTIONS.find((q) => q.id === questionId);
     if (!question) return;
 
     setHasStarted(true);
+    setSelectedQuestionId(questionId);
+
+    // Reset filters when switching away from Q2
+    if (questionId !== 2) {
+      setActiveFilters({});
+    }
+
+    const appliedFilters = questionId === 2 ? (filters ?? activeFilters) : {};
+
     const userMsg: Message = {
       id: `u-${Date.now()}`,
       role: "user",
@@ -41,7 +55,7 @@ export default function ChatInterface() {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question_id: questionId }),
+        body: JSON.stringify({ question_id: questionId, ...appliedFilters }),
       });
 
       if (!res.ok) throw new Error("Erro na API");
@@ -79,9 +93,17 @@ export default function ChatInterface() {
     }
   }
 
+  function handleFilterChange(filters: ActiveFilters) {
+    setActiveFilters(filters);
+    // Re-query Q2 with new filters immediately
+    handleQuestion(2, filters);
+  }
+
   function handleReset() {
     setMessages([]);
     setHasStarted(false);
+    setSelectedQuestionId(null);
+    setActiveFilters({});
   }
 
   return (
@@ -102,12 +124,18 @@ export default function ChatInterface() {
 
       {/* Bottom toolbar when chat has started */}
       {hasStarted && (
-        <div className="border-t border-gray-100 px-4 py-3 bg-white/80 backdrop-blur-sm">
+        <div className="border-t border-gray-100 px-4 py-3 bg-white/80 backdrop-blur-sm space-y-3">
+          {/* Filter panel — only visible when Q2 is active */}
+          {selectedQuestionId === 2 && (
+            <FilterPanel onFilter={handleFilterChange} disabled={isLoading} />
+          )}
+
           <div className="flex items-center justify-between">
             <p className="text-xs text-gray-400">
               Selecione outra pergunta abaixo para continuar
             </p>
             <button
+              type="button"
               onClick={handleReset}
               className="text-xs text-gray-400 hover:text-gray-600 underline transition-colors"
             >
@@ -118,6 +146,7 @@ export default function ChatInterface() {
             {QUESTIONS.map((q) => (
               <button
                 key={q.id}
+                type="button"
                 onClick={() => handleQuestion(q.id)}
                 disabled={isLoading}
                 className="text-left text-xs px-3 py-2 rounded-lg border border-gray-200 hover:bg-blue-50 hover:border-blue-300 text-gray-600 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
