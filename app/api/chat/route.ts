@@ -2,14 +2,41 @@ import { NextRequest, NextResponse } from "next/server";
 import { getAnthropicClient, SYSTEM_PROMPT } from "@/lib/anthropic";
 import { getAnalytics } from "@/lib/data";
 import { QUESTIONS } from "@/lib/questions";
-import { Analytics } from "@/types";
+import { Analytics, IncomeEvolution } from "@/types";
+
+function buildDoctorEvolution(analytics: Analytics, doctorCrm: string): IncomeEvolution | null {
+  const doctor = analytics.doctors_data.find((d) => d.crm === doctorCrm);
+  if (!doctor) return null;
+  return {
+    "2023": {
+      total_lucros: doctor.lucros_2023 ?? 0,
+      total_rend: doctor.rend_2023 ?? 0,
+      count: doctor.lucros_2023 || doctor.rend_2023 ? 1 : 0,
+    },
+    "2024": {
+      total_lucros: doctor.lucros_2024 ?? 0,
+      total_rend: doctor.rend_2024 ?? 0,
+      count: doctor.lucros_2024 || doctor.rend_2024 ? 1 : 0,
+    },
+    "2025": {
+      total_lucros: doctor.lucros_2025 ?? 0,
+      total_rend: doctor.rend_2025 ?? 0,
+      count: doctor.lucros_2025 || doctor.rend_2025 ? 1 : 0,
+    },
+  };
+}
 
 export async function POST(req: NextRequest) {
   try {
-    const { question_id } = await req.json();
+    const body = await req.json();
+    const { question_id, specialty_filter, doctor_crm } = body as {
+      question_id: number;
+      specialty_filter?: string;
+      doctor_crm?: string;
+    };
 
-    if (!question_id || question_id < 1 || question_id > 7) {
-      return NextResponse.json({ error: "question_id inválido (1–7)" }, { status: 400 });
+    if (!question_id || question_id < 1 || question_id > 8) {
+      return NextResponse.json({ error: "question_id inválido (1–8)" }, { status: 400 });
     }
 
     const question = QUESTIONS.find((q) => q.id === question_id);
@@ -18,14 +45,35 @@ export async function POST(req: NextRequest) {
     }
 
     const analytics = getAnalytics();
-    const dataSlice = analytics[question.dataSliceKey as keyof Analytics];
     const summaryContext = {
       total_doctors: analytics.summary.total_doctors,
       avg_lucros_2025: analytics.summary.avg_lucros_2025,
       doctors_with_income_2025: analytics.summary.doctors_with_income_2025,
     };
 
-    const userMessage = `PERGUNTA: ${question.text}
+    let dataSlice: unknown;
+    let questionText = question.text;
+
+    if (question_id === 2 && doctor_crm) {
+      const evolution = buildDoctorEvolution(analytics, doctor_crm);
+      if (!evolution) {
+        return NextResponse.json({ error: "Médico não encontrado" }, { status: 404 });
+      }
+      const doctor = analytics.doctors_list.find((d) => d.crm === doctor_crm);
+      dataSlice = evolution;
+      questionText = `${question.text} (filtrado: médico ${doctor?.nome ?? doctor_crm}, ${doctor?.specialty ?? ""})`;
+    } else if (question_id === 2 && specialty_filter) {
+      const evolution = analytics.income_evolution_by_specialty[specialty_filter];
+      if (!evolution) {
+        return NextResponse.json({ error: "Especialidade não encontrada" }, { status: 404 });
+      }
+      dataSlice = evolution;
+      questionText = `${question.text} (filtrado: especialidade ${specialty_filter})`;
+    } else {
+      dataSlice = analytics[question.dataSliceKey as keyof Analytics];
+    }
+
+    const userMessage = `PERGUNTA: ${questionText}
 
 CONTEXTO GERAL DA BASE:
 ${JSON.stringify(summaryContext, null, 2)}
@@ -49,7 +97,7 @@ ${JSON.stringify(dataSlice, null, 2)}`;
       answer,
       chart_type: question.chartType,
       chart_data: dataSlice,
-      question_text: question.text,
+      question_text: questionText,
     });
   } catch (err) {
     console.error("[/api/chat] error:", err);
