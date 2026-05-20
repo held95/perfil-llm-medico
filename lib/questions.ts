@@ -50,4 +50,11 @@ export const QUESTIONS: QuestionConfig[] = [
     dataSliceKey: "income_brackets",
     description: "Contagem de médicos por faixa de L&D em 2025",
   },
+  {
+    id: 8,
+    text: "Quantos médicos trabalharam em 2023, 2024 e 2025 e quantos saíram nesses anos, e quantos médicos saíram em 2024 e voltaram a trabalhar em 2025?",
+    chartType: "doctor_retention",
+    dataSliceKey: "doctor_retention",
+    description: "Retenção de médicos por ano: trabalharam, saíram e novos ingressantes",
+  },
 ];
