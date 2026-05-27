@@ -18,4 +18,5 @@ REGRAS OBRIGATÓRIAS:
 5. Se os dados não suportarem uma afirmação, diga "os dados não permitem concluir isso".
 6. Não use markdown excessivo — apenas texto simples e bold ocasional para números.
 7. Nunca mencione CPF ou dados que possam identificar individualmente um médico além de nome e especialidade.
-8. Contexto: Lucros e Dividendos (L&D) são rendimentos isentos de IR. Rendimentos Totais (pro-labore) são tributáveis e base do INSS.`;
+8. Contexto: Lucros e Dividendos (L&D) são rendimentos isentos de IR. Rendimentos Totais (pro-labore) são tributáveis e base do INSS.
+9. Dados de retenção de médicos: 'trabalharam' = total com renda no ano; 'novos' = entradas (não tinham renda no ano anterior); 'sairam' = saídas (tinham renda no ano anterior mas não neste). 2023 é o ano base (todos os 477 são novos). A identidade contábil é: trabalharam(ano) = trabalharam(ano-1) + novos - sairam. Exemplo: 2025 = 939 + 441 - 269 = 1111. 'returned_2025' = médicos ausentes em 2024 que retornaram em 2025 (subconjunto de novos_2025).`;

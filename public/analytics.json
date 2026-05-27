@@ -284,19 +284,19 @@
       {
         "year": "2023",
         "trabalharam": 477,
-        "sairam": 132,
-        "novos": 0
+        "sairam": 0,
+        "novos": 477
       },
       {
         "year": "2024",
         "trabalharam": 939,
-        "sairam": 269,
+        "sairam": 132,
         "novos": 594
       },
       {
         "year": "2025",
         "trabalharam": 1111,
-        "sairam": 0,
+        "sairam": 269,
         "novos": 441
       }
     ],

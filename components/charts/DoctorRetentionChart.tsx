@@ -55,7 +55,7 @@ export default function DoctorRetentionChart({
           <strong>
             {data.returned_2025} médico{data.returned_2025 !== 1 ? "s" : ""}
           </strong>{" "}
-          que saíram em 2024 voltaram a trabalhar em 2025
+          que estavam ausentes em 2024 voltaram a trabalhar em 2025
         </p>
       )}
     </div>

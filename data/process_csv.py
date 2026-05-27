@@ -257,11 +257,18 @@ def build_analytics(records):
     new_in_2025 = worked_2025 - worked_2024
     doctor_retention = {
         "years": [
-            {"year": "2023", "trabalharam": len(worked_2023), "sairam": len(left_after_2023), "novos": 0},
-            {"year": "2024", "trabalharam": len(worked_2024), "sairam": len(left_after_2024), "novos": len(new_in_2024)},
-            {"year": "2025", "trabalharam": len(worked_2025), "sairam": 0, "novos": len(new_in_2025)},
+            # 2023 = ano base: sem ano anterior, todos são "novos" (entradas) no dataset
+            {"year": "2023", "trabalharam": len(worked_2023), "sairam": 0,                    "novos": len(worked_2023)},
+            # 2024: saíram = quem estava em 2023 mas não aparece em 2024 (visão retroativa)
+            {"year": "2024", "trabalharam": len(worked_2024), "sairam": len(left_after_2023), "novos": len(new_in_2024)},
+            # 2025: saíram = quem estava em 2024 mas não aparece em 2025 (visão retroativa)
+            {"year": "2025", "trabalharam": len(worked_2025), "sairam": len(left_after_2024), "novos": len(new_in_2025)},
         ],
         "returned_2025": len(returned_2025),
+        # Identidade contábil: trabalharam(ano) = trabalharam(ano-1) + novos - sairam
+        # 2023:   0 + 477 -   0 = 477
+        # 2024: 477 + 594 - 132 = 939
+        # 2025: 939 + 441 - 269 = 1111
     }
 
     # 9. Income evolution by specialty (todas as especialidades)
