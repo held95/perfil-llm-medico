@@ -55,6 +55,7 @@ export async function POST(req: NextRequest) {
     };
 
     let dataSlice: unknown;
+    let effectiveChartType = question.chartType;
     let questionText = question.text;
 
     if (question_id === 2 && doctor_crm) {
@@ -88,6 +89,7 @@ export async function POST(req: NextRequest) {
       questionText = `${question.text} (filtrado: especialidade ${specialty_filter})`;
     } else if (question_id === 11) {
       dataSlice = analytics.forecasts.specialty_growth_ranking;
+      effectiveChartType = "specialty_growth_ranking";
     } else {
       dataSlice = analytics[question.dataSliceKey as keyof Analytics];
     }
@@ -114,7 +116,7 @@ ${JSON.stringify(dataSlice, null, 2)}`;
 
     return NextResponse.json({
       answer,
-      chart_type: question.chartType,
+      chart_type: effectiveChartType,
       chart_data: dataSlice,
       question_text: questionText,
     });

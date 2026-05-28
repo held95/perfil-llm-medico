@@ -41,6 +41,7 @@ interface ChartRow {
 }
 
 function buildChartRows(series: IncomeForecastSeries): ChartRow[] {
+  if (!series?.historical) return [];
   const rows: ChartRow[] = series.historical.map((h) => ({
     year: h.year,
     actual: h.actual,
@@ -198,6 +199,13 @@ function SpecialtyGrowthChart({ data }: { data: SpecialtyGrowthRanking }) {
 }
 
 function SpecialtyForecastChart({ data }: { data: SpecialtyForecastEntry }) {
+  if (!data?.lucros || !data?.rend) {
+    return (
+      <p className="text-sm text-gray-500">
+        Dados de previsão não disponíveis para esta especialidade.
+      </p>
+    );
+  }
   return (
     <div>
       <ForecastLineChart series={data.lucros} label="Lucros & Dividendos (média)" color="#1d4ed8" />

@@ -1,4 +1,5 @@
 "use client";
+import { Component, ReactNode } from "react";
 import {
   Message,
   ChartType,
@@ -50,6 +51,29 @@ const DoctorRetentionChart = dynamic(
 const ForecastChart = dynamic(() => import("./charts/ForecastChart"), {
   ssr: false,
 });
+
+class ChartErrorBoundary extends Component<
+  { children: ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props: { children: ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <p className="text-sm text-gray-400 italic">
+          Não foi possível renderizar o gráfico para estes dados.
+        </p>
+      );
+    }
+    return this.props.children;
+  }
+}
 
 function renderChart(chartType: ChartType, chartData: unknown) {
   switch (chartType) {
@@ -120,7 +144,9 @@ export default function MessageBubble({ message }: { message: Message }) {
             </p>
             {message.chartType && message.chartData != null && (
               <div className="mt-3 pt-3 border-t border-gray-100">
-                {renderChart(message.chartType, message.chartData)}
+                <ChartErrorBoundary>
+                  {renderChart(message.chartType, message.chartData)}
+                </ChartErrorBoundary>
               </div>
             )}
           </div>
