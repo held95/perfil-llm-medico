@@ -24768,5 +24768,1183 @@
       "lucros_2025": null,
       "rend_2025": null
     }
-  ]
+  ],
+  "forecasts": {
+    "overall_forecast": {
+      "lucros": {
+        "historical": [
+          {
+            "year": 2023,
+            "actual": 30021553.18
+          },
+          {
+            "year": 2024,
+            "actual": 54742886.46
+          },
+          {
+            "year": 2025,
+            "actual": 72644982.51
+          }
+        ],
+        "forecasts": [
+          {
+            "year": 2026,
+            "forecast": 95093236.71,
+            "ci_low": 30511696.62,
+            "ci_high": 159674776.81
+          },
+          {
+            "year": 2027,
+            "forecast": 116404951.38,
+            "ci_low": 30971604.19,
+            "ci_high": 201838298.56
+          },
+          {
+            "year": 2028,
+            "forecast": 137716666.04,
+            "ci_low": 29651079.95,
+            "ci_high": 245782252.14
+          }
+        ],
+        "slope_per_year": 21311714.67
+      },
+      "rend": {
+        "historical": [
+          {
+            "year": 2023,
+            "actual": 2221284.0
+          },
+          {
+            "year": 2024,
+            "actual": 2916652.0
+          },
+          {
+            "year": 2025,
+            "actual": 4651586.0
+          }
+        ],
+        "forecasts": [
+          {
+            "year": 2026,
+            "forecast": 5693476.0,
+            "ci_low": 0.0,
+            "ci_high": 15538678.78
+          },
+          {
+            "year": 2027,
+            "forecast": 6908627.0,
+            "ci_low": 0.0,
+            "ci_high": 19932606.08
+          },
+          {
+            "year": 2028,
+            "forecast": 8123778.0,
+            "ci_low": 0.0,
+            "ci_high": 24597953.23
+          }
+        ],
+        "slope_per_year": 1215151.0
+      }
+    },
+    "specialty_forecasts": {
+      "ORTOPEDIA": {
+        "lucros": {
+          "historical": [
+            {
+              "year": 2023,
+              "actual": 64975.81
+            },
+            {
+              "year": 2024,
+              "actual": 40451.09
+            },
+            {
+              "year": 2025,
+              "actual": 47878.15
+            }
+          ],
+          "forecasts": [
+            {
+              "year": 2026,
+              "forecast": 34004.03,
+              "ci_low": 0.0,
+              "ci_high": 336603.18
+            },
+            {
+              "year": 2027,
+              "forecast": 25455.2,
+              "ci_low": 0.0,
+              "ci_high": 425756.25
+            },
+            {
+              "year": 2028,
+              "forecast": 16906.37,
+              "ci_low": 0.0,
+              "ci_high": 523251.6
+            }
+          ],
+          "slope_per_year": -8548.83
+        },
+        "rend": {
+          "historical": [
+            {
+              "year": 2023,
+              "actual": 1740.0
+            },
+            {
+              "year": 2024,
+              "actual": 1410.52
+            },
+            {
+              "year": 2025,
+              "actual": 3839.44
+            }
+          ],
+          "forecasts": [
+            {
+              "year": 2026,
+              "forecast": 4429.43,
+              "ci_low": 0.0,
+              "ci_high": 30552.94
+            },
+            {
+              "year": 2027,
+              "forecast": 5479.15,
+              "ci_low": 0.0,
+              "ci_high": 40037.31
+            },
+            {
+              "year": 2028,
+              "forecast": 6528.87,
+              "ci_low": 0.0,
+              "ci_high": 50241.87
+            }
+          ],
+          "slope_per_year": 1049.72
+        },
+        "growth_pct_lucros": -13.16,
+        "doctor_count_2025": 79
+      },
+      "ENDOCRINO": {
+        "lucros": {
+          "historical": [
+            {
+              "year": 2023,
+              "actual": 10071.25
+            },
+            {
+              "year": 2024,
+              "actual": 57144.06
+            },
+            {
+              "year": 2025,
+              "actual": 41807.81
+            }
+          ],
+          "forecasts": [
+            {
+              "year": 2026,
+              "forecast": 68077.6,
+              "ci_low": 0.0,
+              "ci_high": 659122.26
+            },
+            {
+              "year": 2027,
+              "forecast": 83945.88,
+              "ci_low": 0.0,
+              "ci_high": 865824.47
+            },
+            {
+              "year": 2028,
+              "forecast": 99814.16,
+              "ci_low": 0.0,
+              "ci_high": 1088821.04
+            }
+          ],
+          "slope_per_year": 15868.28
+        },
+        "rend": {
+          "historical": [
+            {
+              "year": 2023,
+              "actual": 0.0
+            },
+            {
+              "year": 2024,
+              "actual": 5648.0
+            },
+            {
+              "year": 2025,
+              "actual": 5097.6
+            }
+          ],
+          "forecasts": [
+            {
+              "year": 2026,
+              "forecast": 8679.47,
+              "ci_low": 0.0,
+              "ci_high": 67381.37
+            },
+            {
+              "year": 2027,
+              "forecast": 11228.27,
+              "ci_low": 0.0,
+              "ci_high": 88883.59
+            },
+            {
+              "year": 2028,
+              "forecast": 13777.07,
+              "ci_low": 0.0,
+              "ci_high": 112004.14
+            }
+          ],
+          "slope_per_year": 2548.8
+        },
+        "growth_pct_lucros": 157.56,
+        "doctor_count_2025": 5
+      },
+      "URO": {
+        "lucros": {
+          "historical": [
+            {
+              "year": 2023,
+              "actual": 91020.41
+            },
+            {
+              "year": 2024,
+              "actual": 102660.32
+            },
+            {
+              "year": 2025,
+              "actual": 118075.34
+            }
+          ],
+          "forecasts": [
+            {
+              "year": 2026,
+              "forecast": 130973.62,
+              "ci_low": 95221.46,
+              "ci_high": 166725.78
+            },
+            {
+              "year": 2027,
+              "forecast": 144501.09,
+              "ci_low": 97205.43,
+              "ci_high": 191796.74
+            },
+            {
+              "year": 2028,
+              "forecast": 158028.55,
+              "ci_low": 98203.75,
+              "ci_high": 217853.35
+            }
+          ],
+          "slope_per_year": 13527.47
+        },
+        "rend": {
+          "historical": [
+            {
+              "year": 2023,
+              "actual": 7616.0
+            },
+            {
+              "year": 2024,
+              "actual": 6819.88
+            },
+            {
+              "year": 2025,
+              "actual": 6376.57
+            }
+          ],
+          "forecasts": [
+            {
+              "year": 2026,
+              "forecast": 5698.06,
+              "ci_low": 2356.8,
+              "ci_high": 9039.31
+            },
+            {
+              "year": 2027,
+              "forecast": 5078.34,
+              "ci_low": 658.28,
+              "ci_high": 9498.4
+            },
+            {
+              "year": 2028,
+              "forecast": 4458.63,
+              "ci_low": 0.0,
+              "ci_high": 10049.61
+            }
+          ],
+          "slope_per_year": -619.71
+        },
+        "growth_pct_lucros": 14.86,
+        "doctor_count_2025": 35
+      },
+      "CIPE": {
+        "lucros": {
+          "historical": [
+            {
+              "year": 2023,
+              "actual": 94526.35
+            },
+            {
+              "year": 2024,
+              "actual": 68007.39
+            },
+            {
+              "year": 2025,
+              "actual": 87319.1
+            }
+          ],
+          "forecasts": [
+            {
+              "year": 2026,
+              "forecast": 76077.03,
+              "ci_low": 0.0,
+              "ci_high": 510116.07
+            },
+            {
+              "year": 2027,
+              "forecast": 72473.4,
+              "ci_low": 0.0,
+              "ci_high": 646653.09
+            },
+            {
+              "year": 2028,
+              "forecast": 68869.78,
+              "ci_low": 0.0,
+              "ci_high": 795156.01
+            }
+          ],
+          "slope_per_year": -3603.63
+        },
+        "rend": {
+          "historical": [
+            {
+              "year": 2023,
+              "actual": 8237.54
+            },
+            {
+              "year": 2024,
+              "actual": 5091.67
+            },
+            {
+              "year": 2025,
+              "actual": 5959.64
+            }
+          ],
+          "forecasts": [
+            {
+              "year": 2026,
+              "forecast": 4151.71,
+              "ci_low": 0.0,
+              "ci_high": 42164.77
+            },
+            {
+              "year": 2027,
+              "forecast": 3012.76,
+              "ci_low": 0.0,
+              "ci_high": 53299.31
+            },
+            {
+              "year": 2028,
+              "forecast": 1873.81,
+              "ci_low": 0.0,
+              "ci_high": 65481.82
+            }
+          ],
+          "slope_per_year": -1138.95
+        },
+        "growth_pct_lucros": -3.81,
+        "doctor_count_2025": 22
+      },
+      "CIRURGIA GERAL": {
+        "lucros": {
+          "historical": [
+            {
+              "year": 2023,
+              "actual": 63506.52
+            },
+            {
+              "year": 2024,
+              "actual": 59451.3
+            },
+            {
+              "year": 2025,
+              "actual": 65444.43
+            }
+          ],
+          "forecasts": [
+            {
+              "year": 2026,
+              "forecast": 64738.65,
+              "ci_low": 0.0,
+              "ci_high": 159901.53
+            },
+            {
+              "year": 2027,
+              "forecast": 65707.61,
+              "ci_low": 0.0,
+              "ci_high": 191596.25
+            },
+            {
+              "year": 2028,
+              "forecast": 66676.56,
+              "ci_low": 0.0,
+              "ci_high": 225914.5
+            }
+          ],
+          "slope_per_year": 968.95
+        },
+        "rend": {
+          "historical": [
+            {
+              "year": 2023,
+              "actual": 4698.03
+            },
+            {
+              "year": 2024,
+              "actual": 3115.95
+            },
+            {
+              "year": 2025,
+              "actual": 4171.36
+            }
+          ],
+          "forecasts": [
+            {
+              "year": 2026,
+              "forecast": 3468.44,
+              "ci_low": 0.0,
+              "ci_high": 28446.8
+            },
+            {
+              "year": 2027,
+              "forecast": 3205.11,
+              "ci_low": 0.0,
+              "ci_high": 36248.37
+            },
+            {
+              "year": 2028,
+              "forecast": 2941.77,
+              "ci_low": 0.0,
+              "ci_high": 44738.56
+            }
+          ],
+          "slope_per_year": -263.34
+        },
+        "growth_pct_lucros": 1.53,
+        "doctor_count_2025": 773
+      },
+      "CLINICA MEDICA": {
+        "lucros": {
+          "historical": [
+            {
+              "year": 2023,
+              "actual": 37663.77
+            },
+            {
+              "year": 2024,
+              "actual": 54845.25
+            },
+            {
+              "year": 2025,
+              "actual": 63040.58
+            }
+          ],
+          "forecasts": [
+            {
+              "year": 2026,
+              "forecast": 77226.67,
+              "ci_low": 0.0,
+              "ci_high": 162329.96
+            },
+            {
+              "year": 2027,
+              "forecast": 89915.08,
+              "ci_low": 0.0,
+              "ci_high": 202496.14
+            },
+            {
+              "year": 2028,
+              "forecast": 102603.48,
+              "ci_low": 0.0,
+              "ci_high": 245008.52
+            }
+          ],
+          "slope_per_year": 12688.4
+        },
+        "rend": {
+          "historical": [
+            {
+              "year": 2023,
+              "actual": 3374.4
+            },
+            {
+              "year": 2024,
+              "actual": 2810.86
+            },
+            {
+              "year": 2025,
+              "actual": 1781.5
+            }
+          ],
+          "forecasts": [
+            {
+              "year": 2026,
+              "forecast": 1062.69,
+              "ci_low": 0.0,
+              "ci_high": 5474.18
+            },
+            {
+              "year": 2027,
+              "forecast": 266.24,
+              "ci_low": 0.0,
+              "ci_high": 6102.09
+            },
+            {
+              "year": 2028,
+              "forecast": -530.21,
+              "ci_low": 0.0,
+              "ci_high": 6851.62
+            }
+          ],
+          "slope_per_year": -796.45
+        },
+        "growth_pct_lucros": 33.69,
+        "doctor_count_2025": 28
+      },
+      "ONCOLOGIA": {
+        "lucros": {
+          "historical": [
+            {
+              "year": 2023,
+              "actual": 46909.89
+            },
+            {
+              "year": 2024,
+              "actual": 51427.08
+            },
+            {
+              "year": 2025,
+              "actual": 23682.77
+            }
+          ],
+          "forecasts": [
+            {
+              "year": 2026,
+              "forecast": 17446.12,
+              "ci_low": 0.0,
+              "ci_high": 322978.43
+            },
+            {
+              "year": 2027,
+              "forecast": 5832.56,
+              "ci_low": 0.0,
+              "ci_high": 410013.81
+            },
+            {
+              "year": 2028,
+              "forecast": -5781.0,
+              "ci_low": 0.0,
+              "ci_high": 505472.33
+            }
+          ],
+          "slope_per_year": -11613.56
+        },
+        "rend": {
+          "historical": [
+            {
+              "year": 2023,
+              "actual": 3020.0
+            },
+            {
+              "year": 2024,
+              "actual": 1412.0
+            },
+            {
+              "year": 2025,
+              "actual": 3154.73
+            }
+          ],
+          "forecasts": [
+            {
+              "year": 2026,
+              "forecast": 2663.64,
+              "ci_low": 0.0,
+              "ci_high": 34396.68
+            },
+            {
+              "year": 2027,
+              "forecast": 2731.0,
+              "ci_low": 0.0,
+              "ci_high": 44709.87
+            },
+            {
+              "year": 2028,
+              "forecast": 2798.36,
+              "ci_low": 0.0,
+              "ci_high": 55897.9
+            }
+          ],
+          "slope_per_year": 67.36
+        },
+        "growth_pct_lucros": -24.76,
+        "doctor_count_2025": 11
+      },
+      "CCP": {
+        "lucros": {
+          "historical": [
+            {
+              "year": 2023,
+              "actual": 39037.59
+            },
+            {
+              "year": 2024,
+              "actual": 44114.11
+            },
+            {
+              "year": 2025,
+              "actual": 69110.35
+            }
+          ],
+          "forecasts": [
+            {
+              "year": 2026,
+              "forecast": 80826.77,
+              "ci_low": 0.0,
+              "ci_high": 269476.23
+            },
+            {
+              "year": 2027,
+              "forecast": 95863.15,
+              "ci_low": 0.0,
+              "ci_high": 345422.93
+            },
+            {
+              "year": 2028,
+              "forecast": 110899.53,
+              "ci_low": 0.0,
+              "ci_high": 426570.45
+            }
+          ],
+          "slope_per_year": 15036.38
+        },
+        "rend": {
+          "historical": [
+            {
+              "year": 2023,
+              "actual": 5624.0
+            },
+            {
+              "year": 2024,
+              "actual": 4926.67
+            },
+            {
+              "year": 2025,
+              "actual": 14721.0
+            }
+          ],
+          "forecasts": [
+            {
+              "year": 2026,
+              "forecast": 17520.89,
+              "ci_low": 0.0,
+              "ci_high": 116882.15
+            },
+            {
+              "year": 2027,
+              "forecast": 22069.39,
+              "ci_low": 0.0,
+              "ci_high": 153511.98
+            },
+            {
+              "year": 2028,
+              "forecast": 26617.89,
+              "ci_low": 0.0,
+              "ci_high": 192881.07
+            }
+          ],
+          "slope_per_year": 4548.5
+        },
+        "growth_pct_lucros": 38.52,
+        "doctor_count_2025": 4
+      },
+      "ANESTESIOLOGIA": {
+        "lucros": {
+          "historical": [
+            {
+              "year": 2023,
+              "actual": 28427.36
+            },
+            {
+              "year": 2024,
+              "actual": 24812.9
+            },
+            {
+              "year": 2025,
+              "actual": 19301.23
+            }
+          ],
+          "forecasts": [
+            {
+              "year": 2026,
+              "forecast": 15054.37,
+              "ci_low": 0.0,
+              "ci_high": 33021.85
+            },
+            {
+              "year": 2027,
+              "forecast": 10491.3,
+              "ci_low": 0.0,
+              "ci_high": 34260.05
+            },
+            {
+              "year": 2028,
+              "forecast": 5928.24,
+              "ci_low": 0.0,
+              "ci_high": 35993.59
+            }
+          ],
+          "slope_per_year": -4563.06
+        },
+        "rend": {
+          "historical": [
+            {
+              "year": 2023,
+              "actual": 0.0
+            },
+            {
+              "year": 2024,
+              "actual": 0.0
+            },
+            {
+              "year": 2025,
+              "actual": 0.0
+            }
+          ],
+          "forecasts": [
+            {
+              "year": 2026,
+              "forecast": 0.0,
+              "ci_low": 0.0,
+              "ci_high": 0.0
+            },
+            {
+              "year": 2027,
+              "forecast": 0.0,
+              "ci_low": 0.0,
+              "ci_high": 0.0
+            },
+            {
+              "year": 2028,
+              "forecast": 0.0,
+              "ci_low": 0.0,
+              "ci_high": 0.0
+            }
+          ],
+          "slope_per_year": 0.0
+        },
+        "growth_pct_lucros": -16.05,
+        "doctor_count_2025": 5
+      },
+      "GASTRO": {
+        "lucros": {
+          "historical": [
+            {
+              "year": 2023,
+              "actual": 26427.65
+            },
+            {
+              "year": 2024,
+              "actual": 31017.43
+            },
+            {
+              "year": 2025,
+              "actual": 54340.66
+            }
+          ],
+          "forecasts": [
+            {
+              "year": 2026,
+              "forecast": 65174.93,
+              "ci_low": 0.0,
+              "ci_high": 242589.92
+            },
+            {
+              "year": 2027,
+              "forecast": 79131.43,
+              "ci_low": 0.0,
+              "ci_high": 313829.41
+            },
+            {
+              "year": 2028,
+              "forecast": 93087.94,
+              "ci_low": 0.0,
+              "ci_high": 389960.0
+            }
+          ],
+          "slope_per_year": 13956.51
+        },
+        "rend": {
+          "historical": [
+            {
+              "year": 2023,
+              "actual": 660.0
+            },
+            {
+              "year": 2024,
+              "actual": 995.43
+            },
+            {
+              "year": 2025,
+              "actual": 3643.2
+            }
+          ],
+          "forecasts": [
+            {
+              "year": 2026,
+              "forecast": 4749.41,
+              "ci_low": 0.0,
+              "ci_high": 26648.44
+            },
+            {
+              "year": 2027,
+              "forecast": 6241.01,
+              "ci_low": 0.0,
+              "ci_high": 35210.7
+            },
+            {
+              "year": 2028,
+              "forecast": 7732.61,
+              "ci_low": 0.0,
+              "ci_high": 44376.69
+            }
+          ],
+          "slope_per_year": 1491.6
+        },
+        "growth_pct_lucros": 52.81,
+        "doctor_count_2025": 5
+      },
+      "VASCULAR": {
+        "lucros": {
+          "historical": [
+            {
+              "year": 2023,
+              "actual": 61559.44
+            },
+            {
+              "year": 2024,
+              "actual": 76087.12
+            },
+            {
+              "year": 2025,
+              "actual": 94211.2
+            }
+          ],
+          "forecasts": [
+            {
+              "year": 2026,
+              "forecast": 109937.68,
+              "ci_low": 75877.96,
+              "ci_high": 143997.4
+            },
+            {
+              "year": 2027,
+              "forecast": 126263.56,
+              "ci_low": 81206.79,
+              "ci_high": 171320.34
+            },
+            {
+              "year": 2028,
+              "forecast": 142589.44,
+              "ci_low": 85596.63,
+              "ci_high": 199582.26
+            }
+          ],
+          "slope_per_year": 16325.88
+        },
+        "rend": {
+          "historical": [
+            {
+              "year": 2023,
+              "actual": 4561.5
+            },
+            {
+              "year": 2024,
+              "actual": 4383.36
+            },
+            {
+              "year": 2025,
+              "actual": 4448.07
+            }
+          ],
+          "forecasts": [
+            {
+              "year": 2026,
+              "forecast": 4350.88,
+              "ci_low": 2050.99,
+              "ci_high": 6650.77
+            },
+            {
+              "year": 2027,
+              "forecast": 4294.16,
+              "ci_low": 1251.69,
+              "ci_high": 7336.63
+            },
+            {
+              "year": 2028,
+              "forecast": 4237.44,
+              "ci_low": 389.0,
+              "ci_high": 8085.89
+            }
+          ],
+          "slope_per_year": -56.72
+        },
+        "growth_pct_lucros": 26.52,
+        "doctor_count_2025": 59
+      },
+      "TORAX": {
+        "lucros": {
+          "historical": [
+            {
+              "year": 2023,
+              "actual": 56240.79
+            },
+            {
+              "year": 2024,
+              "actual": 64918.57
+            },
+            {
+              "year": 2025,
+              "actual": 90855.76
+            }
+          ],
+          "forecasts": [
+            {
+              "year": 2026,
+              "forecast": 105286.67,
+              "ci_low": 0.0,
+              "ci_high": 268741.86
+            },
+            {
+              "year": 2027,
+              "forecast": 122594.15,
+              "ci_low": 0.0,
+              "ci_high": 338825.04
+            },
+            {
+              "year": 2028,
+              "forecast": 139901.64,
+              "ci_low": 0.0,
+              "ci_high": 413414.48
+            }
+          ],
+          "slope_per_year": 17307.48
+        },
+        "rend": {
+          "historical": [
+            {
+              "year": 2023,
+              "actual": 5922.0
+            },
+            {
+              "year": 2024,
+              "actual": 4645.33
+            },
+            {
+              "year": 2025,
+              "actual": 6425.0
+            }
+          ],
+          "forecasts": [
+            {
+              "year": 2026,
+              "forecast": 6167.11,
+              "ci_low": 0.0,
+              "ci_high": 35112.1
+            },
+            {
+              "year": 2027,
+              "forecast": 6418.61,
+              "ci_low": 0.0,
+              "ci_high": 44709.23
+            },
+            {
+              "year": 2028,
+              "forecast": 6670.11,
+              "ci_low": 0.0,
+              "ci_high": 55104.33
+            }
+          ],
+          "slope_per_year": 251.5
+        },
+        "growth_pct_lucros": 30.77,
+        "doctor_count_2025": 4
+      }
+    },
+    "specialty_growth_ranking": {
+      "top_growth": [
+        {
+          "specialty": "ENDOCRINO",
+          "growth_pct_lucros": 157.56,
+          "slope_per_year": 15868.28,
+          "avg_lucros_2025": 41807.81,
+          "doctor_count_2025": 5
+        },
+        {
+          "specialty": "GASTRO",
+          "growth_pct_lucros": 52.81,
+          "slope_per_year": 13956.51,
+          "avg_lucros_2025": 54340.66,
+          "doctor_count_2025": 5
+        },
+        {
+          "specialty": "CCP",
+          "growth_pct_lucros": 38.52,
+          "slope_per_year": 15036.38,
+          "avg_lucros_2025": 69110.35,
+          "doctor_count_2025": 4
+        },
+        {
+          "specialty": "CLINICA MEDICA",
+          "growth_pct_lucros": 33.69,
+          "slope_per_year": 12688.4,
+          "avg_lucros_2025": 63040.58,
+          "doctor_count_2025": 28
+        },
+        {
+          "specialty": "TORAX",
+          "growth_pct_lucros": 30.77,
+          "slope_per_year": 17307.48,
+          "avg_lucros_2025": 90855.76,
+          "doctor_count_2025": 4
+        }
+      ],
+      "bottom_growth": [
+        {
+          "specialty": "CIRURGIA GERAL",
+          "growth_pct_lucros": 1.53,
+          "slope_per_year": 968.95,
+          "avg_lucros_2025": 65444.43,
+          "doctor_count_2025": 773
+        },
+        {
+          "specialty": "CIPE",
+          "growth_pct_lucros": -3.81,
+          "slope_per_year": -3603.63,
+          "avg_lucros_2025": 87319.1,
+          "doctor_count_2025": 22
+        },
+        {
+          "specialty": "ORTOPEDIA",
+          "growth_pct_lucros": -13.16,
+          "slope_per_year": -8548.83,
+          "avg_lucros_2025": 47878.15,
+          "doctor_count_2025": 79
+        },
+        {
+          "specialty": "ANESTESIOLOGIA",
+          "growth_pct_lucros": -16.05,
+          "slope_per_year": -4563.06,
+          "avg_lucros_2025": 19301.23,
+          "doctor_count_2025": 5
+        },
+        {
+          "specialty": "ONCOLOGIA",
+          "growth_pct_lucros": -24.76,
+          "slope_per_year": -11613.56,
+          "avg_lucros_2025": 23682.77,
+          "doctor_count_2025": 11
+        }
+      ],
+      "all_ranked": [
+        {
+          "specialty": "ENDOCRINO",
+          "growth_pct_lucros": 157.56,
+          "slope_per_year": 15868.28,
+          "avg_lucros_2025": 41807.81,
+          "doctor_count_2025": 5
+        },
+        {
+          "specialty": "GASTRO",
+          "growth_pct_lucros": 52.81,
+          "slope_per_year": 13956.51,
+          "avg_lucros_2025": 54340.66,
+          "doctor_count_2025": 5
+        },
+        {
+          "specialty": "CCP",
+          "growth_pct_lucros": 38.52,
+          "slope_per_year": 15036.38,
+          "avg_lucros_2025": 69110.35,
+          "doctor_count_2025": 4
+        },
+        {
+          "specialty": "CLINICA MEDICA",
+          "growth_pct_lucros": 33.69,
+          "slope_per_year": 12688.4,
+          "avg_lucros_2025": 63040.58,
+          "doctor_count_2025": 28
+        },
+        {
+          "specialty": "TORAX",
+          "growth_pct_lucros": 30.77,
+          "slope_per_year": 17307.48,
+          "avg_lucros_2025": 90855.76,
+          "doctor_count_2025": 4
+        },
+        {
+          "specialty": "VASCULAR",
+          "growth_pct_lucros": 26.52,
+          "slope_per_year": 16325.88,
+          "avg_lucros_2025": 94211.2,
+          "doctor_count_2025": 59
+        },
+        {
+          "specialty": "URO",
+          "growth_pct_lucros": 14.86,
+          "slope_per_year": 13527.47,
+          "avg_lucros_2025": 118075.34,
+          "doctor_count_2025": 35
+        },
+        {
+          "specialty": "CIRURGIA GERAL",
+          "growth_pct_lucros": 1.53,
+          "slope_per_year": 968.95,
+          "avg_lucros_2025": 65444.43,
+          "doctor_count_2025": 773
+        },
+        {
+          "specialty": "CIPE",
+          "growth_pct_lucros": -3.81,
+          "slope_per_year": -3603.63,
+          "avg_lucros_2025": 87319.1,
+          "doctor_count_2025": 22
+        },
+        {
+          "specialty": "ORTOPEDIA",
+          "growth_pct_lucros": -13.16,
+          "slope_per_year": -8548.83,
+          "avg_lucros_2025": 47878.15,
+          "doctor_count_2025": 79
+        },
+        {
+          "specialty": "ANESTESIOLOGIA",
+          "growth_pct_lucros": -16.05,
+          "slope_per_year": -4563.06,
+          "avg_lucros_2025": 19301.23,
+          "doctor_count_2025": 5
+        },
+        {
+          "specialty": "ONCOLOGIA",
+          "growth_pct_lucros": -24.76,
+          "slope_per_year": -11613.56,
+          "avg_lucros_2025": 23682.77,
+          "doctor_count_2025": 11
+        }
+      ]
+    }
+  }
 }

@@ -10,6 +10,9 @@ import {
   ContributionBySpecialty,
   IncomeBracket,
   DoctorRetentionData,
+  OverallForecast,
+  SpecialtyGrowthRanking,
+  SpecialtyForecastEntry,
 } from "@/types";
 import dynamic from "next/dynamic";
 
@@ -44,6 +47,9 @@ const DoctorRetentionChart = dynamic(
   () => import("./charts/DoctorRetentionChart"),
   { ssr: false }
 );
+const ForecastChart = dynamic(() => import("./charts/ForecastChart"), {
+  ssr: false,
+});
 
 function renderChart(chartType: ChartType, chartData: unknown) {
   switch (chartType) {
@@ -65,6 +71,12 @@ function renderChart(chartType: ChartType, chartData: unknown) {
       return <IncomeBracketsChart data={chartData as IncomeBracket[]} />;
     case "doctor_retention":
       return <DoctorRetentionChart data={chartData as DoctorRetentionData} />;
+    case "overall_forecast":
+      return <ForecastChart mode="overall" data={chartData as OverallForecast} />;
+    case "specialty_growth_ranking":
+      return <ForecastChart mode="specialty_growth" data={chartData as SpecialtyGrowthRanking} />;
+    case "specialty_forecast":
+      return <ForecastChart mode="specialty" data={chartData as SpecialtyForecastEntry} />;
     default:
       return null;
   }

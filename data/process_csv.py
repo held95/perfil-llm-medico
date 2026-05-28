@@ -4,10 +4,130 @@ Run from perfil-medico-llm/data/:
   python3 process_csv.py
 """
 import json
+import math
 import re
 import datetime
 from pathlib import Path
 from collections import defaultdict
+
+# t-critical for df=1, two-tailed 95% CI (constant — no scipy needed)
+_T_CRIT_95_DF1 = 12.706
+
+
+def linear_forecast_3pts(y: list, forecast_offsets: list):
+    """
+    Linear regression (OLS) over 3 yearly values (x = [0,1,2]).
+    Returns (forecasts, slope) where forecasts is a list of
+    {year, forecast, ci_low, ci_high} for each offset.
+    """
+    n = 3
+    x_mean = 1.0
+    Sxx = 2.0  # sum((xi - 1)^2) for xi in [0,1,2]
+    y_mean = sum(y) / n
+    Sxy = sum((i - x_mean) * y[i] for i in range(n))
+    slope = Sxy / Sxx
+    intercept = y_mean - slope * x_mean
+    SSE = sum((y[i] - (intercept + slope * i)) ** 2 for i in range(n))
+    # df = n - 2 = 1; s = sqrt(SSE / 1)
+    s = math.sqrt(SSE) if SSE > 0 else 0.0
+    results = []
+    for x_new in forecast_offsets:
+        y_pred = intercept + slope * x_new
+        se_pred = s * math.sqrt(1 + 1 / n + (x_new - x_mean) ** 2 / Sxx)
+        margin = _T_CRIT_95_DF1 * se_pred
+        results.append({
+            "year": 2023 + x_new,
+            "forecast": round(y_pred, 2),
+            "ci_low": round(max(0.0, y_pred - margin), 2),
+            "ci_high": round(y_pred + margin, 2),
+        })
+    return results, round(slope, 2)
+
+
+def build_forecasts(records: list) -> dict:
+    OFFSETS = [3, 4, 5]  # → 2026, 2027, 2028
+
+    def _series(hist: list, offsets):
+        forecasts, slope = linear_forecast_3pts(hist, offsets)
+        return {
+            "historical": [
+                {"year": 2023 + i, "actual": round(hist[i], 2)} for i in range(3)
+            ],
+            "forecasts": forecasts,
+            "slope_per_year": slope,
+        }
+
+    # --- Overall forecast ---
+    def _year_vals(key):
+        return [sum(r[key] or 0 for r in records if r[key]) for _ in [0]][0]
+
+    total_lucros = [
+        sum(r["lucros_2023"] or 0 for r in records if r["lucros_2023"]),
+        sum(r["lucros_2024"] or 0 for r in records if r["lucros_2024"]),
+        sum(r["lucros_2025"] or 0 for r in records if r["lucros_2025"]),
+    ]
+    total_rend = [
+        sum(r["rend_2023"] or 0 for r in records if r["lucros_2023"]),
+        sum(r["rend_2024"] or 0 for r in records if r["lucros_2024"]),
+        sum(r["rend_2025"] or 0 for r in records if r["lucros_2025"]),
+    ]
+
+    overall_forecast = {
+        "lucros": _series(total_lucros, OFFSETS),
+        "rend": _series(total_rend, OFFSETS),
+    }
+
+    # --- Specialty forecasts ---
+    specialty_forecasts = {}
+    specialty_growth = []
+
+    for spec in set(r["specialty"] for r in records):
+        spec_recs = [r for r in records if r["specialty"] == spec]
+        l23 = [r["lucros_2023"] for r in spec_recs if r["lucros_2023"]]
+        l24 = [r["lucros_2024"] for r in spec_recs if r["lucros_2024"]]
+        l25 = [r["lucros_2025"] for r in spec_recs if r["lucros_2025"]]
+        if len(l23) < 3 or len(l24) < 3 or len(l25) < 3:
+            continue
+
+        avg_l = [sum(l23) / len(l23), sum(l24) / len(l24), sum(l25) / len(l25)]
+        r23 = [r["rend_2023"] or 0 for r in spec_recs if r["lucros_2023"]]
+        r24 = [r["rend_2024"] or 0 for r in spec_recs if r["lucros_2024"]]
+        r25 = [r["rend_2025"] or 0 for r in spec_recs if r["lucros_2025"]]
+        avg_r = [
+            sum(r23) / len(l23) if l23 else 0,
+            sum(r24) / len(l24) if l24 else 0,
+            sum(r25) / len(l25) if l25 else 0,
+        ]
+
+        lucros_series = _series(avg_l, OFFSETS)
+        rend_series = _series(avg_r, OFFSETS)
+        growth_pct = round(lucros_series["slope_per_year"] / avg_l[0] * 100, 2) if avg_l[0] else 0
+
+        specialty_forecasts[spec] = {
+            "lucros": lucros_series,
+            "rend": rend_series,
+            "growth_pct_lucros": growth_pct,
+            "doctor_count_2025": len(l25),
+        }
+        specialty_growth.append({
+            "specialty": spec,
+            "growth_pct_lucros": growth_pct,
+            "slope_per_year": lucros_series["slope_per_year"],
+            "avg_lucros_2025": round(avg_l[2], 2),
+            "doctor_count_2025": len(l25),
+        })
+
+    ranked = sorted(specialty_growth, key=lambda x: x["growth_pct_lucros"], reverse=True)
+
+    return {
+        "overall_forecast": overall_forecast,
+        "specialty_forecasts": specialty_forecasts,
+        "specialty_growth_ranking": {
+            "top_growth": ranked[:5],
+            "bottom_growth": ranked[-5:],
+            "all_ranked": ranked,
+        },
+    }
 
 CSV_PATH = Path(__file__).parent.parent.parent / "TESTE PERFIL 2023 A 2025.csv"
 OUT_PATH = Path(__file__).parent.parent / "public" / "analytics.json"
@@ -305,6 +425,8 @@ def build_analytics(records):
         for r in records
     ]
 
+    forecasts = build_forecasts(records)
+
     return {
         "summary": summary,
         "specialty_income": specialty_income,
@@ -318,6 +440,7 @@ def build_analytics(records):
         "income_evolution_by_specialty": income_evolution_by_specialty,
         "doctors_list": doctors_list,
         "doctors_data": doctors_data,
+        "forecasts": forecasts,
     }
 
 

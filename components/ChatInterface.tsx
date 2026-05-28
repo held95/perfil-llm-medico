@@ -29,12 +29,14 @@ export default function ChatInterface() {
     setHasStarted(true);
     setSelectedQuestionId(questionId);
 
-    // Reset filters when switching away from Q2
-    if (questionId !== 2) {
+    const FILTERED_QUESTIONS = [2, 11];
+
+    // Reset filters when switching away from filtered questions
+    if (!FILTERED_QUESTIONS.includes(questionId)) {
       setActiveFilters({});
     }
 
-    const appliedFilters = questionId === 2 ? (filters ?? activeFilters) : {};
+    const appliedFilters = FILTERED_QUESTIONS.includes(questionId) ? (filters ?? activeFilters) : {};
 
     const userMsg: Message = {
       id: `u-${Date.now()}`,
@@ -95,8 +97,8 @@ export default function ChatInterface() {
 
   function handleFilterChange(filters: ActiveFilters) {
     setActiveFilters(filters);
-    // Re-query Q2 with new filters immediately
-    handleQuestion(2, filters);
+    // Re-query filtered question with new filters immediately
+    if (selectedQuestionId) handleQuestion(selectedQuestionId, filters);
   }
 
   function handleReset() {
@@ -125,9 +127,13 @@ export default function ChatInterface() {
       {/* Bottom toolbar when chat has started */}
       {hasStarted && (
         <div className="border-t border-gray-100 px-4 py-3 bg-white/80 backdrop-blur-sm space-y-3">
-          {/* Filter panel — only visible when Q2 is active */}
-          {selectedQuestionId === 2 && (
-            <FilterPanel onFilter={handleFilterChange} disabled={isLoading} />
+          {/* Filter panel — visible for Q2 (specialty/doctor) and Q11 (specialty only) */}
+          {(selectedQuestionId === 2 || selectedQuestionId === 11) && (
+            <FilterPanel
+              onFilter={handleFilterChange}
+              disabled={isLoading}
+              specialtyOnly={selectedQuestionId === 11}
+            />
           )}
 
           <div className="flex items-center justify-between">

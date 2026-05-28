@@ -57,4 +57,25 @@ export const QUESTIONS: QuestionConfig[] = [
     dataSliceKey: "doctor_retention",
     description: "Retenção de médicos por ano: trabalharam, saíram e novos ingressantes",
   },
+  {
+    id: 9,
+    text: "Qual a previsão de rendimentos para 2026, 2027 e 2028?",
+    chartType: "overall_forecast",
+    dataSliceKey: "forecasts",
+    description: "Projeção de L&D e Pro-labore até 2028 com intervalo de confiança de 95%",
+  },
+  {
+    id: 10,
+    text: "Quais especialidades têm maior tendência de crescimento?",
+    chartType: "specialty_growth_ranking",
+    dataSliceKey: "forecasts",
+    description: "Ranking das especialidades com maior e menor taxa de crescimento de L&D (2023–2025)",
+  },
+  {
+    id: 11,
+    text: "Qual é a previsão de rendimentos para uma especialidade específica?",
+    chartType: "specialty_forecast",
+    dataSliceKey: "forecasts",
+    description: "Projeção de L&D e Pro-labore de uma especialidade com IC 95% até 2028",
+  },
 ];

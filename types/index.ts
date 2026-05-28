@@ -102,11 +102,61 @@ export interface Analytics {
   dividends_vs_salary: DividendsVsSalary;
   contribution_by_specialty: ContributionBySpecialty[];
   income_brackets: IncomeBracket[];
-  // Novas
   doctor_retention: DoctorRetentionData;
   income_evolution_by_specialty: Record<string, IncomeEvolution>;
   doctors_list: DoctorListItem[];
   doctors_data: DoctorRecord[];
+  forecasts: Forecasts;
+}
+
+export interface ForecastPoint {
+  year: number;
+  forecast: number;
+  ci_low: number;
+  ci_high: number;
+}
+
+export interface HistoricalPoint {
+  year: number;
+  actual: number;
+}
+
+export interface IncomeForecastSeries {
+  historical: HistoricalPoint[];
+  forecasts: ForecastPoint[];
+  slope_per_year: number;
+}
+
+export interface OverallForecast {
+  lucros: IncomeForecastSeries;
+  rend: IncomeForecastSeries;
+}
+
+export interface SpecialtyForecastEntry {
+  lucros: IncomeForecastSeries;
+  rend: IncomeForecastSeries;
+  growth_pct_lucros: number;
+  doctor_count_2025: number;
+}
+
+export interface SpecialtyGrowthItem {
+  specialty: string;
+  growth_pct_lucros: number;
+  slope_per_year: number;
+  avg_lucros_2025: number;
+  doctor_count_2025: number;
+}
+
+export interface SpecialtyGrowthRanking {
+  top_growth: SpecialtyGrowthItem[];
+  bottom_growth: SpecialtyGrowthItem[];
+  all_ranked: SpecialtyGrowthItem[];
+}
+
+export interface Forecasts {
+  overall_forecast: OverallForecast;
+  specialty_forecasts: Record<string, SpecialtyForecastEntry>;
+  specialty_growth_ranking: SpecialtyGrowthRanking;
 }
 
 export type ChartType =
@@ -117,7 +167,10 @@ export type ChartType =
   | "dividends_vs_salary"
   | "contribution_by_specialty"
   | "income_brackets"
-  | "doctor_retention";
+  | "doctor_retention"
+  | "overall_forecast"
+  | "specialty_growth_ranking"
+  | "specialty_forecast";
 
 export interface QuestionConfig {
   id: number;

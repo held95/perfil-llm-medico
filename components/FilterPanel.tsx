@@ -10,9 +10,10 @@ interface FilterState {
 interface Props {
   onFilter: (filters: { specialty_filter?: string; doctor_crm?: string }) => void;
   disabled: boolean;
+  specialtyOnly?: boolean;
 }
 
-export default function FilterPanel({ onFilter, disabled }: Props) {
+export default function FilterPanel({ onFilter, disabled, specialtyOnly }: Props) {
   const [specialties, setSpecialties] = useState<string[]>([]);
   const [doctors, setDoctors] = useState<DoctorListItem[]>([]);
   const [filter, setFilter] = useState<FilterState>({ specialty: "", doctorCrm: "" });
@@ -74,13 +75,14 @@ export default function FilterPanel({ onFilter, disabled }: Props) {
   return (
     <div className="bg-blue-50 border border-blue-200 rounded-xl px-4 py-3 space-y-3 text-sm">
       <p className="text-xs font-semibold text-blue-700 uppercase tracking-wide">
-        Filtros — Evolução de Rendimentos
+        {specialtyOnly ? "Filtro — Especialidade" : "Filtros — Evolução de Rendimentos"}
       </p>
 
       {/* Specialty filter */}
       <div className="flex flex-col gap-1">
-        <label className="text-xs text-gray-600">Especialidade</label>
+        <label htmlFor="filter-specialty" className="text-xs text-gray-600">Especialidade</label>
         <select
+          id="filter-specialty"
           value={filter.specialty}
           onChange={(e) => handleSpecialtyChange(e.target.value)}
           disabled={disabled || !!filter.doctorCrm}
@@ -95,8 +97,8 @@ export default function FilterPanel({ onFilter, disabled }: Props) {
         </select>
       </div>
 
-      {/* Doctor search */}
-      <div className="flex flex-col gap-1 relative" ref={dropdownRef}>
+      {/* Doctor search — hidden when specialtyOnly */}
+      {!specialtyOnly && <div className="flex flex-col gap-1 relative" ref={dropdownRef}>
         <label className="text-xs text-gray-600">
           Médico (busca por nome ou CRM)
         </label>
@@ -135,11 +137,12 @@ export default function FilterPanel({ onFilter, disabled }: Props) {
             ))}
           </div>
         )}
-      </div>
+      </div>}
 
       {/* Clear button */}
       {hasFilter && (
         <button
+          type="button"
           onClick={handleClear}
           disabled={disabled}
           className="text-xs text-blue-600 hover:underline disabled:opacity-50"

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getAnthropicClient, SYSTEM_PROMPT } from "@/lib/anthropic";
 import { getAnalytics } from "@/lib/data";
 import { QUESTIONS } from "@/lib/questions";
-import { Analytics, IncomeEvolution } from "@/types";
+import { Analytics, Forecasts, IncomeEvolution, SpecialtyForecastEntry, SpecialtyGrowthRanking, OverallForecast } from "@/types";
 
 function buildDoctorEvolution(analytics: Analytics, doctorCrm: string): IncomeEvolution | null {
   const doctor = analytics.doctors_data.find((d) => d.crm === doctorCrm);
@@ -35,8 +35,8 @@ export async function POST(req: NextRequest) {
       doctor_crm?: string;
     };
 
-    if (!question_id || question_id < 1 || question_id > 8) {
-      return NextResponse.json({ error: "question_id inválido (1–8)" }, { status: 400 });
+    if (!question_id || question_id < 1 || question_id > 11) {
+      return NextResponse.json({ error: "question_id inválido (1–11)" }, { status: 400 });
     }
 
     const question = QUESTIONS.find((q) => q.id === question_id);
@@ -49,6 +49,9 @@ export async function POST(req: NextRequest) {
       total_doctors: analytics.summary.total_doctors,
       avg_lucros_2025: analytics.summary.avg_lucros_2025,
       doctors_with_income_2025: analytics.summary.doctors_with_income_2025,
+      ...(question_id >= 9 && {
+        forecast_note: "Previsões baseadas em regressão linear de 3 pontos (2023-2025). ICs de 95% são estatisticamente corretos mas amplos com apenas 3 observações.",
+      }),
     };
 
     let dataSlice: unknown;
@@ -69,6 +72,22 @@ export async function POST(req: NextRequest) {
       }
       dataSlice = evolution;
       questionText = `${question.text} (filtrado: especialidade ${specialty_filter})`;
+    } else if (question_id === 9) {
+      dataSlice = analytics.forecasts.overall_forecast;
+    } else if (question_id === 10) {
+      dataSlice = analytics.forecasts.specialty_growth_ranking;
+    } else if (question_id === 11 && specialty_filter) {
+      const specForecast = analytics.forecasts.specialty_forecasts[specialty_filter];
+      if (!specForecast) {
+        return NextResponse.json(
+          { error: "Especialidade não encontrada ou dados insuficientes para previsão" },
+          { status: 404 }
+        );
+      }
+      dataSlice = specForecast;
+      questionText = `${question.text} (filtrado: especialidade ${specialty_filter})`;
+    } else if (question_id === 11) {
+      dataSlice = analytics.forecasts.specialty_growth_ranking;
     } else {
       dataSlice = analytics[question.dataSliceKey as keyof Analytics];
     }
