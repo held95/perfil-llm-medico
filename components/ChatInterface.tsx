@@ -14,6 +14,7 @@ export default function ChatInterface() {
   const [hasStarted, setHasStarted] = useState(false);
   const [selectedQuestionId, setSelectedQuestionId] = useState<number | null>(null);
   const [activeFilters, setActiveFilters] = useState<ActiveFilters>({});
+  const [isQuestionsVisible, setIsQuestionsVisible] = useState(true);
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -106,6 +107,7 @@ export default function ChatInterface() {
     setHasStarted(false);
     setSelectedQuestionId(null);
     setActiveFilters({});
+    setIsQuestionsVisible(true);
   }
 
   return (
@@ -127,19 +129,21 @@ export default function ChatInterface() {
       {/* Bottom toolbar when chat has started */}
       {hasStarted && (
         <div className="border-t border-gray-100 px-4 py-3 bg-white/80 backdrop-blur-sm space-y-3">
-          {/* Filter panel — visible for Q2 (specialty/doctor) and Q11 (specialty only) */}
-          {(selectedQuestionId === 2 || selectedQuestionId === 11) && (
-            <FilterPanel
-              onFilter={handleFilterChange}
-              disabled={isLoading}
-              specialtyOnly={selectedQuestionId === 11}
-            />
-          )}
-
           <div className="flex items-center justify-between">
-            <p className="text-xs text-gray-400">
-              Selecione outra pergunta abaixo para continuar
-            </p>
+            <button
+              type="button"
+              onClick={() => setIsQuestionsVisible((v) => !v)}
+              className="flex items-center gap-1 text-xs text-gray-400 hover:text-gray-600 transition-colors"
+            >
+              <span
+                className={`inline-block transition-transform duration-200 ${
+                  isQuestionsVisible ? "rotate-0" : "-rotate-90"
+                }`}
+              >
+                ▼
+              </span>
+              {isQuestionsVisible ? "Ocultar perguntas" : "Mostrar perguntas"}
+            </button>
             <button
               type="button"
               onClick={handleReset}
@@ -148,18 +152,31 @@ export default function ChatInterface() {
               Reiniciar conversa
             </button>
           </div>
-          <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-1.5">
-            {QUESTIONS.map((q) => (
-              <button
-                key={q.id}
-                type="button"
-                onClick={() => handleQuestion(q.id)}
+          <div
+            className={`overflow-hidden transition-all duration-300 ${
+              isQuestionsVisible ? "max-h-[600px]" : "max-h-0"
+            }`}
+          >
+            {(selectedQuestionId === 2 || selectedQuestionId === 11) && (
+              <FilterPanel
+                onFilter={handleFilterChange}
                 disabled={isLoading}
-                className="text-left text-xs px-3 py-2 rounded-lg border border-gray-200 hover:bg-blue-50 hover:border-blue-300 text-gray-600 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
-              >
-                {q.text}
-              </button>
-            ))}
+                specialtyOnly={selectedQuestionId === 11}
+              />
+            )}
+            <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+              {QUESTIONS.map((q) => (
+                <button
+                  key={q.id}
+                  type="button"
+                  onClick={() => handleQuestion(q.id)}
+                  disabled={isLoading}
+                  className="text-left text-xs px-3 py-2 rounded-lg border border-gray-200 hover:bg-blue-50 hover:border-blue-300 text-gray-600 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+                >
+                  {q.text}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       )}
