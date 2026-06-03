@@ -78,4 +78,12 @@ export const QUESTIONS: QuestionConfig[] = [
     dataSliceKey: "forecasts",
     description: "Projeção de L&D e Pro-labore de uma especialidade com IC 95% até 2028",
   },
+  {
+    id: 12,
+    text: "Qual a probabilidade de fechar com a quantidade de médicos visando 2026 e 2027?",
+    chartType: "retention_probability",
+    dataSliceKey: "doctor_retention",
+    description:
+      "Médicos presentes em 2024 e 2025 acima de R$30 mil e R$50 mil e a probabilidade de permanecerem em 2026/2027 (>R$50 mil = Pagador de Previdência)",
+  },
 ];

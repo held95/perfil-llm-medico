@@ -159,6 +159,63 @@ export interface Forecasts {
   specialty_growth_ranking: SpecialtyGrowthRanking;
 }
 
+// --- Q12: probabilidade de retenção de médicos (2026/2027) ---
+export interface RetentionCohort {
+  threshold_label: string; // ">R$30 mil" | ">R$50 mil (Pagador de Previdência)"
+  threshold: number;
+  count_2024_2025: number; // presentes em 2024 E 2025 acima do limite
+  expected_2026: number;
+  expected_2027: number;
+  prob_2026_pct: number;
+  prob_2027_pct: number;
+}
+
+export interface RetentionDoctor {
+  nome: string;
+  especialidade: string;
+  ganho_2024: number;
+  ganho_2025: number;
+  tag: "Pagador de Previdência" | "Acima de R$30 mil";
+}
+
+export interface RetentionProbability {
+  retention_rate_pct: number; // taxa média histórica de retenção ano-a-ano
+  cohorts: RetentionCohort[];
+  doctors: RetentionDoctor[]; // coorte >30k (inclui os >50k), limitada
+  total_cohort_30k: number;
+  total_cohort_50k: number;
+}
+
+// --- People Analytics: dashboard por médico ---
+export interface DoctorKpis {
+  total_2025: number;
+  total_2024: number;
+  total_2023: number;
+  growth_pct_2023_2025: number | null;
+  lucros_pct_2025: number | null;
+  rend_pct_2025: number | null;
+  rank_2025: number | null;
+  total_ranked: number;
+  percentile_2025: number | null;
+  is_previdencia: boolean;
+  projection_2026: number | null;
+  projection_2027: number | null;
+}
+
+export interface DoctorYearPoint {
+  year: string;
+  lucros: number;
+  rend: number;
+  total: number;
+}
+
+export interface DoctorAnalytics {
+  doctor: DoctorListItem;
+  kpis: DoctorKpis;
+  series: DoctorYearPoint[];
+  insight: string;
+}
+
 export type ChartType =
   | "specialty_income"
   | "income_evolution"
@@ -170,7 +227,8 @@ export type ChartType =
   | "doctor_retention"
   | "overall_forecast"
   | "specialty_growth_ranking"
-  | "specialty_forecast";
+  | "specialty_forecast"
+  | "retention_probability";
 
 export interface QuestionConfig {
   id: number;
@@ -187,4 +245,6 @@ export interface Message {
   chartType?: ChartType;
   chartData?: unknown;
   isLoading?: boolean;
+  awaitingFilter?: boolean;
+  questionId?: number;
 }

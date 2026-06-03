@@ -14,6 +14,7 @@ import {
   OverallForecast,
   SpecialtyGrowthRanking,
   SpecialtyForecastEntry,
+  RetentionProbability,
 } from "@/types";
 import dynamic from "next/dynamic";
 
@@ -51,6 +52,10 @@ const DoctorRetentionChart = dynamic(
 const ForecastChart = dynamic(() => import("./charts/ForecastChart"), {
   ssr: false,
 });
+const RetentionProbabilityChart = dynamic(
+  () => import("./charts/RetentionProbabilityChart"),
+  { ssr: false }
+);
 
 class ChartErrorBoundary extends Component<
   { children: ReactNode },
@@ -101,6 +106,8 @@ function renderChart(chartType: ChartType, chartData: unknown) {
       return <ForecastChart mode="specialty_growth" data={chartData as SpecialtyGrowthRanking} />;
     case "specialty_forecast":
       return <ForecastChart mode="specialty" data={chartData as SpecialtyForecastEntry} />;
+    case "retention_probability":
+      return <RetentionProbabilityChart data={chartData as RetentionProbability} />;
     default:
       return null;
   }

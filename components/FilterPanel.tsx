@@ -11,9 +11,12 @@ interface Props {
   onFilter: (filters: { specialty_filter?: string; doctor_crm?: string }) => void;
   disabled: boolean;
   specialtyOnly?: boolean;
+  // Quando true (Q11), lista apenas especialidades com previsão disponível,
+  // evitando 404 ao selecionar especialidades sem dados de forecast.
+  useForecastSpecialties?: boolean;
 }
 
-export default function FilterPanel({ onFilter, disabled, specialtyOnly }: Props) {
+export default function FilterPanel({ onFilter, disabled, specialtyOnly, useForecastSpecialties }: Props) {
   const [specialties, setSpecialties] = useState<string[]>([]);
   const [doctors, setDoctors] = useState<DoctorListItem[]>([]);
   const [filter, setFilter] = useState<FilterState>({ specialty: "", doctorCrm: "" });
@@ -25,10 +28,10 @@ export default function FilterPanel({ onFilter, disabled, specialtyOnly }: Props
     fetch("/api/filters")
       .then((r) => r.json())
       .then((data) => {
-        setSpecialties(data.specialties);
+        setSpecialties(useForecastSpecialties ? data.forecast_specialties : data.specialties);
         setDoctors(data.doctors_list);
       });
-  }, []);
+  }, [useForecastSpecialties]);
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {
